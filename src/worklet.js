@@ -1,4 +1,4 @@
-// Credit for radial gradients: https://github.com/twerske/houdini-worklets/blob/main/src/glow-lights/worklet.js
+// Credit for radial gradients inspiration: https://github.com/twerske/houdini-worklets/blob/main/src/glow-lights/worklet.js
 
 const WORKLET = "cosmic-starfield";
 
