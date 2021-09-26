@@ -4,23 +4,20 @@
 
 body {
   display: grid;
-  place-content: center;
   min-height: 100vh;
   margin: 0;
-  padding: 1rem;
+  font-family: system-ui, sans-serif;
 }
 
 h1 {
-  --houdiniExampleWidth: 200;
-  --houdiniExampleHeight: 30;
-  --houdiniExampleX: 15;
-  --houdiniExampleY: 30;
-  --houdiniExampleColor: rgb(221, 75, 216);
-
-  background: paint(houdiniExample);
-  max-width: 30ch;
-  padding: 2rem;
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: system-ui, sans-serif;
+  /* --cosmic-starfield-gradient-colors: #471f60, #231b6e; */
+  /* --cosmic-starfield-stars: 1234; */
+  --cosmic-starfield-clouds: true;
+  display: grid;
+  place-content: center;
+  color: white;
+  font-size: 8vw;
+  padding: 5vmin;
+  margin: 0;
+  background-image: paint(cosmic-starfield);
 }

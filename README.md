@@ -1,55 +1,55 @@
-# 11ty CSS Houdini Worklet Generator
+![preview of the effect showing a linear gradient from top to bottom of nearly black, dark purple, and a purpley navy, over top of which are many small dots in varying sizes and opacity, then a cloud like effect, and final the words Hello World](preview.png)
 
-> From Stephanie Eckles [@5t3ph](https://twitter.com/5t3ph) - author of [ModernCSS.dev](https://moderncss.dev) and [11ty.Rocks](https://11ty.rocks).
+# CSS Houdini Cosmic Starfield
 
-This worklet was produced using [Eleventy](https://11ty.dev) as the server environment.
+> From Stephanie Eckles [@5t3ph](https://twitter.com/5t3ph) - author of [ModernCSS.dev](https://moderncss.dev).
 
-## Worklet Demo
+Generate a dynamic cosmic starfield with optional cosmic clouds and customizable gradient.
 
-The very simple worklet that is included in this generator can be viewed in [this CodePen demo](https://codepen.io/5t3ph/pen/NWRpMbv).
+## How to Use
 
-The demo shows how to include the required polyfill and then require the worklet within a script tag, and how to modify it's display attributes via CSS custom properties.
+While Houdini paint worklets have the best support out of available Houdini features, they still currently require a polyfill to ensure they are applied cross browser.
 
-## To Use the Generator
+So, first include the following once in your project.
 
-CSS Houdini worklets require a server to run. While there are many ways to create an envirnoment for developing and testing your worklet. As a static site generator, Eleventy provides a slim way to get setup and testing quickly so you can focus on creating your worklet!
+```html
+<script src="https://unpkg.com/css-paint-polyfill"></script>
+```
 
-**Before you begin** - be sure to update the `package.json` details to your own!
+> Note: The polyfill will not work if the worklet is applied to pseudo elements, and _may_ have issues with customization when applied to the `body` element.
 
-### Project Structure
+Then, include the paint worklet script _after_ the polyfill is loaded:
 
-_The following are all within `src` which is your working directory_
+```html
+<script>
+  CSS.paintWorklet.addModule("https://unpkg.com/houdini-cosmic-starfield");
 
-`_includes/base.njk` - a simple HTML5 template that includes the (currently required) polyfill for the CSS Houdini Paint API, as well as the `CSS.paintWorklet.addModule` pointing to the worklet's location on the local server
+  // Trickery to get the polyfill to draw the worklet in Firefox and Safari
+  setTimeout(() => {
+    document.querySelector("ANCESTOR_ELEMENT").style.width = "100.01%";
+    document.querySelector("ANCESTOR_ELEMENT").style.width = "100%";
+  }, 500);
+</script>
+```
 
-`css/style.css` - the local server styles, this is where you add your worklet to your test elements
+Finally, use it in your styles! For best results, assign as the `background-image` to a dedicated element.
 
-`index.md` - produces the index content, and can be swapped to another one of [11ty's supported templating languages]()
+```css
+.cosmic-starfield-element {
+  /* Number of stars */
+  --cosmic-starfield-stars: 4280;
+  /* 'true' or do not include to hide the clouds */
+  --cosmic-starfield-clouds: true;
+  /* String array of at least two hex codes */
+  --cosmic-starfield-gradient-colors: #471f60, #231b6e;
 
-`worklet.js` - the critical file that creates and registers your worklet class
+  /* Use the worklet! */
+  background-image: paint(cosmic-starfield);
+}
+```
 
-### Development
+> `!important` - provided gradient colors must be in hex format.
 
-`npm start` - will run the project locally by launching Eleventy in watch mode and include a localhost server with hot reload provided by Browsersync.
+## What is CSS Houdini?
 
-## Publishing / Using Your Worklet
-
-The recommendation from [Houdini.How](https://houdini.how) is to publish your worklet as an npm package so that it can be imported _and_ used by accessing it on a CDN such as [unpkg](https://unpkg.com).
-
-This is because of the requirement of running via HTTPS, so unpkg makes it easy to share and include elsewhere such as CodePen.
-
-**To publish via npm**, you will first need to [set up an account](https://www.npmjs.com/signup).
-
-Then within your local project, run `npm publish`.
-
-> The included `prepublish` command will ensure Eleventy has been freshly run to ensure the latest version of your worklet is available.
-
-Within a few minutes you will see your package added to your npm account, and then it will also be available at `https://unpkg.com/your-package-name`
-
-Review the [CodePen Demo](https://codepen.io/5t3ph/pen/NWRpMbv) to see how to then include it outside of your local project.
-
-### Updating Your Worklet
-
-If you make changes to your worklet, use the included `bump` command to easily increment your package number, ex: `npm run bump patch`, then proceed to run `npm publish`.
-
-Your changes will be available within a few minutes.
+Check out other Houdini paint worklets and more info at [Houdini.How](https://houdini.how).
