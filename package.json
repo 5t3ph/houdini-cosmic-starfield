@@ -1,7 +1,7 @@
 {
   "name": "houdini-cosmic-starfield",
   "version": "0.1.0",
-  "description": "An Eleventy environment for creating CSS Houdini worklets.",
+  "description": "Generate a dynamic cosmic starfield with optional cosmic clouds and customizable gradient using CSS Houdini",
   "main": "dist/worklet.js",
   "scripts": {
     "start": "eleventy --serve",
