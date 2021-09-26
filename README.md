@@ -6,6 +6,8 @@
 
 Generate a dynamic cosmic starfield with optional cosmic clouds and customizable gradient.
 
+**[Preview on CodePen](https://codepen.io/5t3ph/pen/RwgqVZO)**
+
 ## How to Use
 
 While Houdini paint worklets have the best support out of available Houdini features, they still currently require a polyfill to ensure they are applied cross browser.

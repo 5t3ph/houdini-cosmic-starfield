@@ -1,6 +1,6 @@
 {
   "name": "houdini-cosmic-starfield",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate a dynamic cosmic starfield with optional cosmic clouds and customizable gradient using CSS Houdini",
   "main": "dist/worklet.js",
   "scripts": {
